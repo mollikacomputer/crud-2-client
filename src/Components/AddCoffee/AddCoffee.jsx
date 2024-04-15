@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 
 const AddCoffee = () => {
 
@@ -22,7 +23,11 @@ const AddCoffee = () => {
     .then(data => {
       console.log(data);
       if(data.insertedId){
-        alert("New Coffee Added Successfully")
+        swal({
+          title: "Good job!",
+          text: "You clicked the button!",
+          icon: "success",
+        });
       }
     })
 
