@@ -24,8 +24,8 @@ const AddCoffee = () => {
       console.log(data);
       if(data.insertedId){
         swal({
-          title: "Good job!",
-          text: "You clicked the button!",
+          title: "Successfully Add A Coffee",
+          text: "Thank You So much",
           icon: "success",
         });
       }
