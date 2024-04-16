@@ -29,6 +29,7 @@ const AddCoffee = () => {
           icon: "success",
         });
       }
+      event.target.reset();
     })
 
   }
