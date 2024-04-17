@@ -49,7 +49,7 @@ const AddCoffee = () => {
         </label>
         <label className="form-control w-full max-w-xs">
           <div className="label">
-            <span className="label-text">Quantity</span>
+            <span className="label-text">Phone</span>
           </div>
           <input
             type="number"

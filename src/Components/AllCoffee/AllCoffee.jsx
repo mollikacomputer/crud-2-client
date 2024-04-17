@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AllCoffee = () => {
@@ -38,7 +38,10 @@ const AllCoffee = () => {
             <h2 className="text-3xl"> Total Coffee :{coffees.length}</h2>
             {
                 coffees.map(coffee => <div key={coffee._id}> Coffee Name: {coffee.name}, Email:{coffee.email}, <b> Id:{coffee._id} 
-                </b> Edit <button onClick={ ()=> handleDelete(coffee._id) } className="btn"> X </button> </div>)
+                </b>
+                <Link to={`/updatecoffee/${coffee._id}`}> <button className="btn" > Edit</button> </Link>
+                 
+                 <button onClick={ ()=> handleDelete(coffee._id) } className="btn"> X </button> </div>)
             }
             
         </div>
