@@ -6,9 +6,9 @@ const AddCoffee = () => {
     event.preventDefault();
     const name = event.target.name.value;
     const email = event.target.email.value;
-    const password = event.target.password.value;
+    const quantity = event.target.quantity.value;
     const phone = event.target.phone.value;
-    const newCoffee = {name, email, password, phone};
+    const newCoffee = {name, email, quantity, phone};
     
     console.log(newCoffee);
 
@@ -71,12 +71,12 @@ const AddCoffee = () => {
         </label>
         <label className="form-control w-full max-w-xs">
           <div className="label">
-            <span className="label-text">Password</span>
+            <span className="label-text">Quantity</span>
           </div>
           <input
-            type="tepassword"
-            name="password"
-            placeholder="Password"
+            type="number"
+            name="quantity"
+            placeholder="quantity"
             className="input input-bordered w-full max-w-xs"
           />
         

@@ -1,14 +1,17 @@
+import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AllCoffee = () => {
-    const coffees = useLoaderData();
-    const handleDelete = (_id) =>{
-        console.log(_id);
 
+    const loadedCoffees = useLoaderData();
+    const [coffees, setCoffees] = useState(loadedCoffees);
+
+    const handleDelete = (_id) =>{
+        // console.log("all coffees", coffees);
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "You Want to DELETE",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -16,17 +19,25 @@ const AllCoffee = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-
-            fetch(`http://localhost:5000/coffee/${_id}`,{method:"DELETE"})
+            fetch(`http://localhost:5000/coffee/${_id}`,{
+            method:"DELETE"
+            })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 if(data.deletedCount > 0){
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                      });
+                    Swal.fire(
+                        "Deleted!",
+                        "Your file has been deleted.",
+                        "success"
+                    // Swal.fire({
+                    //     title: "Deleted!",
+                    //     text: "Your file has been deleted.",
+                    //     icon: "success"
+                    //   }
+                    )
+                    const remaining = coffees.filter(cof => cof._id !== _id);
+                    setCoffees(remaining);
+    
                 }
             })
             }
@@ -35,9 +46,9 @@ const AllCoffee = () => {
     }
     return (
         <div>
-            <h2 className="text-3xl"> Total Coffee :{coffees.length}</h2>
+            <h2 className="text-3xl"> Total Coffee :{loadedCoffees.length}</h2>
             {
-                coffees.map(coffee => <div key={coffee._id}> Coffee Name: {coffee.name}, Email:{coffee.email}, <b> Id:{coffee._id} 
+                loadedCoffees.map(coffee => <div key={coffee._id}> Coffee Name: {coffee.name}, Email:{coffee.email}, <b> Id:{coffee._id} 
                 </b>
                 <Link to={`/updatecoffee/${coffee._id}`}> <button className="btn" > Edit</button> </Link>
                  
